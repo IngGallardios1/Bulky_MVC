@@ -32,6 +32,19 @@ namespace BulkyWeb.Areas.Customer.Controllers
             return View(objProductList);
         }
 
+        public IActionResult Details(int id)
+        {
+            Product objProductList = _productRepository.Get(u=>u.Id==id);
+            IEnumerable<SelectListItem> CategoryList = _categoryRepository.GetAll().Select(i => new SelectListItem
+            {
+                Text = i.Name,
+                Value = i.Id.ToString()
+            });
+            return View(objProductList);
+        }
+
+
+
         public IActionResult Privacy()
         {
             return View();
